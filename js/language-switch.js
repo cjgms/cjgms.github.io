@@ -60,7 +60,7 @@
           home: '首页',
           portfolio: '作品集',
           about: '关于',
-          resume: '中文简历'
+          resume: '简历'
         }
       : {
           home: 'Home',
@@ -81,7 +81,7 @@
         setMenuItem(anchor, zh ? '/zh-cn/portfolio/' : '/portfolio/', labels.portfolio);
       } else if (path === '/about/' || path === '/zh-cn/about/' || text === 'About' || text === '关于') {
         setMenuItem(anchor, zh ? '/zh-cn/about/' : '/about/', labels.about);
-      } else if (path === enResume || path === zhResume || text === 'Resume' || text === '中文简历') {
+      } else if (path === enResume || path === zhResume || text === 'Resume' || text === '中文简历' || text === '简历') {
         setMenuItem(anchor, zh ? zhResume : enResume, labels.resume);
       }
     });
@@ -89,7 +89,7 @@
 
   function tuneResumeLinks(zh) {
     var target = zh ? zhResume : enResume;
-    var label = zh ? '中文简历' : 'Resume';
+    var label = zh ? '简历' : 'Resume';
 
     document.querySelectorAll('a[href]').forEach(function (anchor) {
       var path = getAnchorPath(anchor);
@@ -99,7 +99,7 @@
 
       if (anchor.classList.contains('btn-secondary')) {
         var span = anchor.querySelector('span');
-        if (span) span.textContent = zh ? '下载中文简历' : 'Download Resume';
+        if (span) span.textContent = zh ? '下载简历' : 'Download Resume';
         return;
       }
 
@@ -108,7 +108,7 @@
           return node.nodeType === Node.TEXT_NODE;
         });
         if (textNodes.length) {
-          textNodes[textNodes.length - 1].nodeValue = ' ' + (zh ? '中文简历 / CV' : 'Resume / CV');
+          textNodes[textNodes.length - 1].nodeValue = ' ' + (zh ? '简历 / CV' : 'Resume / CV');
         }
         return;
       }
@@ -150,12 +150,25 @@
     });
   }
 
+  function tuneLocalizedCopy(zh) {
+    var siteTitle = document.querySelector('#site-info #site-title');
+    var siteBio = document.querySelector('#site-info #site-bio');
+    var authorName = document.querySelector('#aside-content .author-info-name');
+    var authorDescription = document.querySelector('#aside-content .author-info-description');
+
+    if (siteTitle) siteTitle.textContent = zh ? '陈建基 | 作品集' : 'Jianji Chen | Portfolio';
+    if (siteBio) siteBio.textContent = zh ? '游戏策划 | 独立开发者' : 'Game Designer | Indie Developer';
+    if (authorName) authorName.textContent = zh ? '作者：Jianji Chen' : 'Jianji Chen';
+    if (authorDescription) authorDescription.textContent = zh ? '初级游戏策划 & 独立开发者' : 'Junior Game Designer & Indie Developer';
+  }
+
   function applyLanguageUI() {
     var zh = isZhPage();
     document.documentElement.setAttribute('lang', zh ? 'zh-CN' : 'en');
     tuneMenuForLanguage(zh);
     tuneResumeLinks(zh);
     ensureLanguageSwitch(zh);
+    tuneLocalizedCopy(zh);
   }
 
   document.addEventListener('DOMContentLoaded', applyLanguageUI);
