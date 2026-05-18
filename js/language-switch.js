@@ -81,7 +81,7 @@
         setMenuItem(anchor, zh ? '/zh-cn/portfolio/' : '/portfolio/', labels.portfolio);
       } else if (path === '/about/' || path === '/zh-cn/about/' || text === 'About' || text === '关于') {
         setMenuItem(anchor, zh ? '/zh-cn/about/' : '/about/', labels.about);
-      } else if (path === enResume || path === zhResume || text === 'Resume' || text === '中文简历' || text === '简历') {
+      } else if (path === enResume || path === zhResume || text === 'Resume' || text === '简历' || text === '简历') {
         setMenuItem(anchor, zh ? zhResume : enResume, labels.resume);
       }
     });
@@ -158,7 +158,7 @@
 
     if (siteTitle) siteTitle.textContent = zh ? '陈建基 | 作品集' : 'Jianji Chen | Portfolio';
     if (siteBio) siteBio.textContent = zh ? '游戏策划 | 独立开发者' : 'Game Designer | Indie Developer';
-    if (authorName) authorName.textContent = zh ? '作者：Jianji Chen' : 'Jianji Chen';
+    if (authorName) authorName.textContent = zh ? '陈建基' : 'Jianji Chen';
     if (authorDescription) authorDescription.textContent = zh ? '初级游戏策划 & 独立开发者' : 'Junior Game Designer & Indie Developer';
   }
 
